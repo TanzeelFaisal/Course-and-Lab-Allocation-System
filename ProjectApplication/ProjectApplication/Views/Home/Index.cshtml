@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Check Clash";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<h2>Check Clash</h2>
+
+<div id="result"></div>
+
+<div class="form-group">
+    <label for="instructorId">Instructor ID:</label>
+    <input type="text" class="form-control" id="instructorId">
+</div>
+
+<div class="form-group">
+    <label for="courseId">Course ID:</label>
+    <input type="text" class="form-control" id="courseId">
+</div>
+
+<div class="form-group">
+    <label for="timeSlot">Time Slot:</label>
+    <input type="text" class="form-control" id="timeSlot">
+</div>
+
+<div class="form-group">
+    <label for="venueId">Venue ID:</label>
+    <input type="text" class="form-control" id="venueId">
+</div>
+
+<button type="button" class="btn btn-primary" onclick="checkClash()">Check Clash</button>
+
+@section scripts {
+    <script>
+        function checkClash() {
+            var instructorId = $("#instructorId").val();
+            var courseId = $("#courseId").val();
+            var timeSlot = $("#timeSlot").val();
+            var venueId = $("#venueId").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CheckClash", "Home")",
+                data: { instructorId: instructorId, courseId: courseId, timeSlot: timeSlot, venueId: venueId },
+                success: function(response) {
+                    var courseClash = response.CourseClash;
+                    var timingClash = response.TimingClash;
+                    var venueClash = response.VenueClash;
+
+                    if (instructorId === "" || courseId === "" || timeSlot === "" || venueId === "") {
+                        $("#result").html("<div class='alert alert-danger'>All fields are required.</div>");
+                        return;
+                    }
+
+                    if (courseClash || timingClash || venueClash) {
+                        var errorMessage = "The following clashes were detected:<br>";
+
+                        if (courseClash) {
+                            errorMessage += "- There is a course clash for the selected instructor.<br>";
+                        }
+
+                        if (timingClash) {
+                            errorMessage += "- There is a timing clash for the selected instructor.<br>";
+                        }
+
+                        if (venueClash) {
+                            errorMessage += "- There is a timing clash for the selected venue.<br>";
+                        }
+
+                        $("#result").html("<div class='alert alert-danger'>" + errorMessage + "</div>");
+                    } else {
+                        $("#result").html("<div class='alert alert-success'>No clashes were detected.</div>");
+                    }
+                },
+                error: function() {
+                    $("#result").html("<div class='alert alert-danger'>An error occurred while checking for clashes.</div>");
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SE_TEAM2_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course_Allocation">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Section" />
+    </Key>
+    <Property Name="CourseID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CourseName" Type="varchar" MaxLength="50" />
+    <Property Name="Section" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="InstructorID" Type="int" />
+  </EntityType>
+  <EntityType Name="COURSE_INST_PREFERENCES">
+    <Key>
+      <PropertyRef Name="Instructor_id" />
+    </Key>
+    <Property Name="Instructor_id" Type="int" Nullable="false" />
+    <Property Name="Instructor_name" Type="varchar" MaxLength="40" />
+    <Property Name="pref_course_id_1" Type="varchar" MaxLength="20" />
+    <Property Name="pref_course_id_2" Type="varchar" MaxLength="20" />
+    <Property Name="pref_timeslotID_1" Type="int" />
+    <Property Name="pref_timeslotID_2" Type="int" />
+  </EntityType>
+  <EntityType Name="course_section_timing">
+    <Key>
+      <PropertyRef Name="course_id" />
+      <PropertyRef Name="course_section" />
+    </Key>
+    <Property Name="course_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="course_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="course_section" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="course_timing" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="course_timeslot">
+    <Key>
+      <PropertyRef Name="courseTimeslot_id" />
+    </Key>
+    <Property Name="courseTimeslot_id" Type="int" Nullable="false" />
+    <Property Name="courseTiming" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="courseList">
+    <Key>
+      <PropertyRef Name="Course_id" />
+    </Key>
+    <Property Name="Course_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Course_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lab_Allocation">
+    <Key>
+      <PropertyRef Name="LabID" />
+      <PropertyRef Name="Section" />
+    </Key>
+    <Property Name="LabID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LabName" Type="varchar" MaxLength="50" />
+    <Property Name="Section" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="InstructorID" Type="int" />
+  </EntityType>
+  <EntityType Name="LAB_INST_PREFERENCE">
+    <Key>
+      <PropertyRef Name="Instructor_id" />
+    </Key>
+    <Property Name="Instructor_id" Type="int" Nullable="false" />
+    <Property Name="Instructor_name" Type="varchar" MaxLength="30" />
+    <Property Name="gpa" Type="decimal" Precision="3" Scale="2" />
+    <Property Name="uni_name" Type="char" MaxLength="50" />
+    <Property Name="experience" Type="char" MaxLength="100" />
+    <Property Name="pref_lab_id_1" Type="varchar" MaxLength="20" />
+    <Property Name="pref_lab_id_2" Type="varchar" MaxLength="20" />
+    <Property Name="non_pref_timeslotID_1" Type="int" />
+    <Property Name="non_pref_timeslotID_2" Type="int" />
+    <Property Name="lab_id_1_grade" Type="char" MaxLength="1" />
+    <Property Name="lab_id_2_grade" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="lab_timeslot">
+    <Key>
+      <PropertyRef Name="labTimeslot_id" />
+    </Key>
+    <Property Name="labTimeslot_id" Type="int" Nullable="false" />
+    <Property Name="labTiming" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="labList">
+    <Key>
+      <PropertyRef Name="Lab_id" />
+    </Key>
+    <Property Name="Lab_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Lab_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="labs_section_timing">
+    <Key>
+      <PropertyRef Name="lab_id" />
+      <PropertyRef Name="lab_section" />
+    </Key>
+    <Property Name="lab_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lab_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lab_section" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lab_timing" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="sections">
+    <Key>
+      <PropertyRef Name="section_id" />
+    </Key>
+    <Property Name="section_id" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SE_TEAM2_db.dbo.timetable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="timetable">
+    <Key>
+      <PropertyRef Name="timetable_ver" />
+      <PropertyRef Name="timetable_venues" />
+    </Key>
+    <Property Name="timetable_ver" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="coursetimetable_slots" Type="varchar" MaxLength="30" />
+    <Property Name="labtimetable_slots" Type="varchar" MaxLength="30" />
+    <Property Name="timetable_venues" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="venues">
+    <Key>
+      <PropertyRef Name="venue_id" />
+    </Key>
+    <Property Name="venue_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="department" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="capacity" Type="int" />
+  </EntityType>
+  <Association Name="FK__COURSE_IN__pref___440B1D61">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_course_id_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___44FF419A">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_course_id_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___45F365D3">
+    <End Role="course_timeslot" Type="Self.course_timeslot" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course_timeslot">
+        <PropertyRef Name="courseTimeslot_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_timeslotID_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___46E78A0C">
+    <End Role="course_timeslot" Type="Self.course_timeslot" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course_timeslot">
+        <PropertyRef Name="courseTimeslot_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_timeslotID_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___non_p__4BAC3F29">
+    <End Role="lab_timeslot" Type="Self.lab_timeslot" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lab_timeslot">
+        <PropertyRef Name="labTimeslot_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="non_pref_timeslotID_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___non_p__4CA06362">
+    <End Role="lab_timeslot" Type="Self.lab_timeslot" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lab_timeslot">
+        <PropertyRef Name="labTimeslot_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="non_pref_timeslotID_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___pref___49C3F6B7">
+    <End Role="labList" Type="Self.labList" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="pref_lab_id_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___pref___4AB81AF0">
+    <End Role="labList" Type="Self.labList" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="pref_lab_id_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COURSE_INSTRUCTOR">
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="0..1" />
+    <End Role="Course_Allocation" Type="Self.Course_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="Instructor_id" />
+      </Principal>
+      <Dependent Role="Course_Allocation">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseList">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="1" />
+    <End Role="course_section_timing" Type="Self.course_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="course_section_timing">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseListAlloc">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="1" />
+    <End Role="Course_Allocation" Type="Self.Course_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="Course_Allocation">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_COURSETIMESLOT_TT' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_COURSETIMESLOT_TT" />-->
+  <Association Name="FK_LAB_INSTRUCTOR">
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="0..1" />
+    <End Role="Lab_Allocation" Type="Self.Lab_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="Instructor_id" />
+      </Principal>
+      <Dependent Role="Lab_Allocation">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabList">
+    <End Role="labList" Type="Self.labList" Multiplicity="1" />
+    <End Role="labs_section_timing" Type="Self.labs_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="labs_section_timing">
+        <PropertyRef Name="lab_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabListAlloc">
+    <End Role="labList" Type="Self.labList" Multiplicity="1" />
+    <End Role="Lab_Allocation" Type="Self.Lab_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="Lab_Allocation">
+        <PropertyRef Name="LabID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LABSECTIONSAlloc">
+    <End Role="sections" Type="Self.sections" Multiplicity="1" />
+    <End Role="Lab_Allocation" Type="Self.Lab_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="Lab_Allocation">
+        <PropertyRef Name="Section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_LABTIMESLOT_TT' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_LABTIMESLOT_TT" />-->
+  <Association Name="FK_SECTIONS">
+    <End Role="sections" Type="Self.sections" Multiplicity="1" />
+    <End Role="course_section_timing" Type="Self.course_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="course_section_timing">
+        <PropertyRef Name="course_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SECTIONS_LABS">
+    <End Role="sections" Type="Self.sections" Multiplicity="1" />
+    <End Role="labs_section_timing" Type="Self.labs_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="labs_section_timing">
+        <PropertyRef Name="lab_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SECTIONSAlloc">
+    <End Role="sections" Type="Self.sections" Multiplicity="1" />
+    <End Role="Course_Allocation" Type="Self.Course_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="Course_Allocation">
+        <PropertyRef Name="Section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_TIMESLOT' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_TIMESLOT" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_TIMESLOT_LABS' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_TIMESLOT_LABS" />-->
+  <Association Name="FK_venues_TT">
+    <End Role="venues" Type="Self.venues" Multiplicity="1" />
+    <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="venues">
+        <PropertyRef Name="venue_id" />
+      </Principal>
+      <Dependent Role="timetable">
+        <PropertyRef Name="timetable_venues" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="check_course_clash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="instructor_id" Type="int" Mode="In" />
+    <Parameter Name="course_id" Type="varchar" Mode="In" />
+    <Parameter Name="clash" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="check_timing_clash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="instructor_id" Type="int" Mode="In" />
+    <Parameter Name="time_slot_id" Type="varchar" Mode="In" />
+    <Parameter Name="clash" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="check_venue_clash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="venue_id" Type="varchar" Mode="In" />
+    <Parameter Name="time_slot" Type="time" Mode="In" />
+    <Parameter Name="clash" Type="bit" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="SE_TEAM2_dbModelStoreContainer">
+    <EntitySet Name="Course_Allocation" EntityType="Self.Course_Allocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COURSE_INST_PREFERENCES" EntityType="Self.COURSE_INST_PREFERENCES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course_section_timing" EntityType="Self.course_section_timing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course_timeslot" EntityType="Self.course_timeslot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="courseList" EntityType="Self.courseList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lab_Allocation" EntityType="Self.Lab_Allocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LAB_INST_PREFERENCE" EntityType="Self.LAB_INST_PREFERENCE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lab_timeslot" EntityType="Self.lab_timeslot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="labList" EntityType="Self.labList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="labs_section_timing" EntityType="Self.labs_section_timing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sections" EntityType="Self.sections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venues" EntityType="Self.venues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timetable" EntityType="Self.timetable" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [timetable].[timetable_ver] AS [timetable_ver], 
+    [timetable].[coursetimetable_slots] AS [coursetimetable_slots], 
+    [timetable].[labtimetable_slots] AS [labtimetable_slots], 
+    [timetable].[timetable_venues] AS [timetable_venues]
+    FROM [dbo].[timetable] AS [timetable]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__COURSE_IN__pref___440B1D61" Association="Self.FK__COURSE_IN__pref___440B1D61">
+      <End Role="courseList" EntitySet="courseList" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___44FF419A" Association="Self.FK__COURSE_IN__pref___44FF419A">
+      <End Role="courseList" EntitySet="courseList" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___45F365D3" Association="Self.FK__COURSE_IN__pref___45F365D3">
+      <End Role="course_timeslot" EntitySet="course_timeslot" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___46E78A0C" Association="Self.FK__COURSE_IN__pref___46E78A0C">
+      <End Role="course_timeslot" EntitySet="course_timeslot" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___non_p__4BAC3F29" Association="Self.FK__LAB_INST___non_p__4BAC3F29">
+      <End Role="lab_timeslot" EntitySet="lab_timeslot" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___non_p__4CA06362" Association="Self.FK__LAB_INST___non_p__4CA06362">
+      <End Role="lab_timeslot" EntitySet="lab_timeslot" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___pref___49C3F6B7" Association="Self.FK__LAB_INST___pref___49C3F6B7">
+      <End Role="labList" EntitySet="labList" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___pref___4AB81AF0" Association="Self.FK__LAB_INST___pref___4AB81AF0">
+      <End Role="labList" EntitySet="labList" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COURSE_INSTRUCTOR" Association="Self.FK_COURSE_INSTRUCTOR">
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+      <End Role="Course_Allocation" EntitySet="Course_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseList" Association="Self.FK_CourseList">
+      <End Role="courseList" EntitySet="courseList" />
+      <End Role="course_section_timing" EntitySet="course_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseListAlloc" Association="Self.FK_CourseListAlloc">
+      <End Role="courseList" EntitySet="courseList" />
+      <End Role="Course_Allocation" EntitySet="Course_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LAB_INSTRUCTOR" Association="Self.FK_LAB_INSTRUCTOR">
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+      <End Role="Lab_Allocation" EntitySet="Lab_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabList" Association="Self.FK_LabList">
+      <End Role="labList" EntitySet="labList" />
+      <End Role="labs_section_timing" EntitySet="labs_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabListAlloc" Association="Self.FK_LabListAlloc">
+      <End Role="labList" EntitySet="labList" />
+      <End Role="Lab_Allocation" EntitySet="Lab_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LABSECTIONSAlloc" Association="Self.FK_LABSECTIONSAlloc">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="Lab_Allocation" EntitySet="Lab_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SECTIONS" Association="Self.FK_SECTIONS">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="course_section_timing" EntitySet="course_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SECTIONS_LABS" Association="Self.FK_SECTIONS_LABS">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="labs_section_timing" EntitySet="labs_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SECTIONSAlloc" Association="Self.FK_SECTIONSAlloc">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="Course_Allocation" EntitySet="Course_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_venues_TT" Association="Self.FK_venues_TT">
+      <End Role="venues" EntitySet="venues" />
+      <End Role="timetable" EntitySet="timetable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

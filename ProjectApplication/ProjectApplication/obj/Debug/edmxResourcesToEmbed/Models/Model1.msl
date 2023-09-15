@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SE_TEAM2_dbModelStoreContainer" CdmEntityContainer="SE_TEAM2_dbEntities1">
+    <EntitySetMapping Name="Course_Allocation">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.Course_Allocation">
+        <MappingFragment StoreEntitySet="Course_Allocation">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Section" ColumnName="Section" />
+          <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COURSE_INST_PREFERENCES">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.COURSE_INST_PREFERENCES">
+        <MappingFragment StoreEntitySet="COURSE_INST_PREFERENCES">
+          <ScalarProperty Name="Instructor_id" ColumnName="Instructor_id" />
+          <ScalarProperty Name="Instructor_name" ColumnName="Instructor_name" />
+          <ScalarProperty Name="pref_course_id_1" ColumnName="pref_course_id_1" />
+          <ScalarProperty Name="pref_course_id_2" ColumnName="pref_course_id_2" />
+          <ScalarProperty Name="pref_timeslotID_1" ColumnName="pref_timeslotID_1" />
+          <ScalarProperty Name="pref_timeslotID_2" ColumnName="pref_timeslotID_2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="course_section_timing">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.course_section_timing">
+        <MappingFragment StoreEntitySet="course_section_timing">
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+          <ScalarProperty Name="course_section" ColumnName="course_section" />
+          <ScalarProperty Name="course_timing" ColumnName="course_timing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="course_timeslot">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.course_timeslot">
+        <MappingFragment StoreEntitySet="course_timeslot">
+          <ScalarProperty Name="courseTimeslot_id" ColumnName="courseTimeslot_id" />
+          <ScalarProperty Name="courseTiming" ColumnName="courseTiming" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courseLists">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.courseList">
+        <MappingFragment StoreEntitySet="courseList">
+          <ScalarProperty Name="Course_id" ColumnName="Course_id" />
+          <ScalarProperty Name="Course_name" ColumnName="Course_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lab_Allocation">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.Lab_Allocation">
+        <MappingFragment StoreEntitySet="Lab_Allocation">
+          <ScalarProperty Name="LabID" ColumnName="LabID" />
+          <ScalarProperty Name="LabName" ColumnName="LabName" />
+          <ScalarProperty Name="Section" ColumnName="Section" />
+          <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LAB_INST_PREFERENCE">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.LAB_INST_PREFERENCE">
+        <MappingFragment StoreEntitySet="LAB_INST_PREFERENCE">
+          <ScalarProperty Name="Instructor_id" ColumnName="Instructor_id" />
+          <ScalarProperty Name="Instructor_name" ColumnName="Instructor_name" />
+          <ScalarProperty Name="gpa" ColumnName="gpa" />
+          <ScalarProperty Name="uni_name" ColumnName="uni_name" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="pref_lab_id_1" ColumnName="pref_lab_id_1" />
+          <ScalarProperty Name="pref_lab_id_2" ColumnName="pref_lab_id_2" />
+          <ScalarProperty Name="non_pref_timeslotID_1" ColumnName="non_pref_timeslotID_1" />
+          <ScalarProperty Name="non_pref_timeslotID_2" ColumnName="non_pref_timeslotID_2" />
+          <ScalarProperty Name="lab_id_1_grade" ColumnName="lab_id_1_grade" />
+          <ScalarProperty Name="lab_id_2_grade" ColumnName="lab_id_2_grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lab_timeslot">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.lab_timeslot">
+        <MappingFragment StoreEntitySet="lab_timeslot">
+          <ScalarProperty Name="labTimeslot_id" ColumnName="labTimeslot_id" />
+          <ScalarProperty Name="labTiming" ColumnName="labTiming" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="labLists">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.labList">
+        <MappingFragment StoreEntitySet="labList">
+          <ScalarProperty Name="Lab_id" ColumnName="Lab_id" />
+          <ScalarProperty Name="Lab_name" ColumnName="Lab_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="labs_section_timing">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.labs_section_timing">
+        <MappingFragment StoreEntitySet="labs_section_timing">
+          <ScalarProperty Name="lab_id" ColumnName="lab_id" />
+          <ScalarProperty Name="lab_name" ColumnName="lab_name" />
+          <ScalarProperty Name="lab_section" ColumnName="lab_section" />
+          <ScalarProperty Name="lab_timing" ColumnName="lab_timing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sections">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.section">
+        <MappingFragment StoreEntitySet="sections">
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venues">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.venue">
+        <MappingFragment StoreEntitySet="venues">
+          <ScalarProperty Name="venue_id" ColumnName="venue_id" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timetables">
+      <EntityTypeMapping TypeName="SE_TEAM2_dbModel.timetable">
+        <MappingFragment StoreEntitySet="timetable">
+          <ScalarProperty Name="timetable_ver" ColumnName="timetable_ver" />
+          <ScalarProperty Name="coursetimetable_slots" ColumnName="coursetimetable_slots" />
+          <ScalarProperty Name="labtimetable_slots" ColumnName="labtimetable_slots" />
+          <ScalarProperty Name="timetable_venues" ColumnName="timetable_venues" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="check_course_clash" FunctionName="SE_TEAM2_dbModel.Store.check_course_clash" />
+    <FunctionImportMapping FunctionImportName="check_timing_clash" FunctionName="SE_TEAM2_dbModel.Store.check_timing_clash" />
+    <FunctionImportMapping FunctionImportName="check_venue_clash" FunctionName="SE_TEAM2_dbModel.Store.check_venue_clash" />
+  </EntityContainerMapping>
+</Mapping>

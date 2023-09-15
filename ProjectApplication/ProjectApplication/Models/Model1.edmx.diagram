@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7380fe45bcfb408197966a17f693fd4b" Name="Diagram1">
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.Course_Allocation" Width="1.5" PointX="11" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.COURSE_INST_PREFERENCES" Width="1.5" PointX="11" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.course_section_timing" Width="1.5" PointX="11" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.course_timeslot" Width="1.5" PointX="8.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.courseList" Width="1.5" PointX="8.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.Lab_Allocation" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.LAB_INST_PREFERENCE" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.lab_timeslot" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.labList" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.labs_section_timing" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.section" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.venue" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SE_TEAM2_dbModel.timetable" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_COURSE_INSTRUCTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_CourseListAlloc" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_SECTIONSAlloc" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__COURSE_IN__pref___440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__COURSE_IN__pref___44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__COURSE_IN__pref___45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__COURSE_IN__pref___46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_CourseList" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_SECTIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_LAB_INSTRUCTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_LabListAlloc" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_LABSECTIONSAlloc" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__LAB_INST___non_p__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__LAB_INST___non_p__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__LAB_INST___pref___49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK__LAB_INST___pref___4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_LabList" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_SECTIONS_LABS" ManuallyRouted="false" />
+        <AssociationConnector Association="SE_TEAM2_dbModel.FK_venues_TT" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

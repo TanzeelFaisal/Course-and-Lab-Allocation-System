@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SE_TEAM2_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course_Allocation">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Section" />
+    </Key>
+    <Property Name="CourseID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Section" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorID" Type="Int32" />
+    <NavigationProperty Name="COURSE_INST_PREFERENCES" Relationship="Self.FK_COURSE_INSTRUCTOR" FromRole="Course_Allocation" ToRole="COURSE_INST_PREFERENCES" />
+    <NavigationProperty Name="courseList" Relationship="Self.FK_CourseListAlloc" FromRole="Course_Allocation" ToRole="courseList" />
+    <NavigationProperty Name="section1" Relationship="Self.FK_SECTIONSAlloc" FromRole="Course_Allocation" ToRole="sections" />
+  </EntityType>
+  <EntityType Name="COURSE_INST_PREFERENCES">
+    <Key>
+      <PropertyRef Name="Instructor_id" />
+    </Key>
+    <Property Name="Instructor_id" Type="Int32" Nullable="false" />
+    <Property Name="Instructor_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="pref_course_id_1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pref_course_id_2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pref_timeslotID_1" Type="Int32" />
+    <Property Name="pref_timeslotID_2" Type="Int32" />
+    <NavigationProperty Name="Course_Allocation" Relationship="Self.FK_COURSE_INSTRUCTOR" FromRole="COURSE_INST_PREFERENCES" ToRole="Course_Allocation" />
+    <NavigationProperty Name="courseList" Relationship="Self.FK__COURSE_IN__pref___440B1D61" FromRole="COURSE_INST_PREFERENCES" ToRole="courseList" />
+    <NavigationProperty Name="courseList1" Relationship="Self.FK__COURSE_IN__pref___44FF419A" FromRole="COURSE_INST_PREFERENCES" ToRole="courseList" />
+    <NavigationProperty Name="course_timeslot" Relationship="Self.FK__COURSE_IN__pref___45F365D3" FromRole="COURSE_INST_PREFERENCES" ToRole="course_timeslot" />
+    <NavigationProperty Name="course_timeslot1" Relationship="Self.FK__COURSE_IN__pref___46E78A0C" FromRole="COURSE_INST_PREFERENCES" ToRole="course_timeslot" />
+  </EntityType>
+  <EntityType Name="course_section_timing">
+    <Key>
+      <PropertyRef Name="course_id" />
+      <PropertyRef Name="course_section" />
+    </Key>
+    <Property Name="course_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_section" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_timing" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="courseList" Relationship="Self.FK_CourseList" FromRole="course_section_timing" ToRole="courseList" />
+    <NavigationProperty Name="section" Relationship="Self.FK_SECTIONS" FromRole="course_section_timing" ToRole="sections" />
+  </EntityType>
+  <EntityType Name="course_timeslot">
+    <Key>
+      <PropertyRef Name="courseTimeslot_id" />
+    </Key>
+    <Property Name="courseTimeslot_id" Type="Int32" Nullable="false" />
+    <Property Name="courseTiming" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="COURSE_INST_PREFERENCES" Relationship="Self.FK__COURSE_IN__pref___45F365D3" FromRole="course_timeslot" ToRole="COURSE_INST_PREFERENCES" />
+    <NavigationProperty Name="COURSE_INST_PREFERENCES1" Relationship="Self.FK__COURSE_IN__pref___46E78A0C" FromRole="course_timeslot" ToRole="COURSE_INST_PREFERENCES" />
+  </EntityType>
+  <EntityType Name="courseList">
+    <Key>
+      <PropertyRef Name="Course_id" />
+    </Key>
+    <Property Name="Course_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Course_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Course_Allocation" Relationship="Self.FK_CourseListAlloc" FromRole="courseList" ToRole="Course_Allocation" />
+    <NavigationProperty Name="COURSE_INST_PREFERENCES" Relationship="Self.FK__COURSE_IN__pref___440B1D61" FromRole="courseList" ToRole="COURSE_INST_PREFERENCES" />
+    <NavigationProperty Name="COURSE_INST_PREFERENCES1" Relationship="Self.FK__COURSE_IN__pref___44FF419A" FromRole="courseList" ToRole="COURSE_INST_PREFERENCES" />
+    <NavigationProperty Name="course_section_timing" Relationship="Self.FK_CourseList" FromRole="courseList" ToRole="course_section_timing" />
+  </EntityType>
+  <EntityType Name="Lab_Allocation">
+    <Key>
+      <PropertyRef Name="LabID" />
+      <PropertyRef Name="Section" />
+    </Key>
+    <Property Name="LabID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LabName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Section" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorID" Type="Int32" />
+    <NavigationProperty Name="LAB_INST_PREFERENCE" Relationship="Self.FK_LAB_INSTRUCTOR" FromRole="Lab_Allocation" ToRole="LAB_INST_PREFERENCE" />
+    <NavigationProperty Name="labList" Relationship="Self.FK_LabListAlloc" FromRole="Lab_Allocation" ToRole="labList" />
+    <NavigationProperty Name="section1" Relationship="Self.FK_LABSECTIONSAlloc" FromRole="Lab_Allocation" ToRole="sections" />
+  </EntityType>
+  <EntityType Name="LAB_INST_PREFERENCE">
+    <Key>
+      <PropertyRef Name="Instructor_id" />
+    </Key>
+    <Property Name="Instructor_id" Type="Int32" Nullable="false" />
+    <Property Name="Instructor_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="gpa" Type="Decimal" Precision="3" Scale="2" />
+    <Property Name="uni_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="experience" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="pref_lab_id_1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pref_lab_id_2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="non_pref_timeslotID_1" Type="Int32" />
+    <Property Name="non_pref_timeslotID_2" Type="Int32" />
+    <Property Name="lab_id_1_grade" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="lab_id_2_grade" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Lab_Allocation" Relationship="Self.FK_LAB_INSTRUCTOR" FromRole="LAB_INST_PREFERENCE" ToRole="Lab_Allocation" />
+    <NavigationProperty Name="lab_timeslot" Relationship="Self.FK__LAB_INST___non_p__4BAC3F29" FromRole="LAB_INST_PREFERENCE" ToRole="lab_timeslot" />
+    <NavigationProperty Name="lab_timeslot1" Relationship="Self.FK__LAB_INST___non_p__4CA06362" FromRole="LAB_INST_PREFERENCE" ToRole="lab_timeslot" />
+    <NavigationProperty Name="labList" Relationship="Self.FK__LAB_INST___pref___49C3F6B7" FromRole="LAB_INST_PREFERENCE" ToRole="labList" />
+    <NavigationProperty Name="labList1" Relationship="Self.FK__LAB_INST___pref___4AB81AF0" FromRole="LAB_INST_PREFERENCE" ToRole="labList" />
+  </EntityType>
+  <EntityType Name="lab_timeslot">
+    <Key>
+      <PropertyRef Name="labTimeslot_id" />
+    </Key>
+    <Property Name="labTimeslot_id" Type="Int32" Nullable="false" />
+    <Property Name="labTiming" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="LAB_INST_PREFERENCE" Relationship="Self.FK__LAB_INST___non_p__4BAC3F29" FromRole="lab_timeslot" ToRole="LAB_INST_PREFERENCE" />
+    <NavigationProperty Name="LAB_INST_PREFERENCE1" Relationship="Self.FK__LAB_INST___non_p__4CA06362" FromRole="lab_timeslot" ToRole="LAB_INST_PREFERENCE" />
+  </EntityType>
+  <EntityType Name="labList">
+    <Key>
+      <PropertyRef Name="Lab_id" />
+    </Key>
+    <Property Name="Lab_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Lab_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Lab_Allocation" Relationship="Self.FK_LabListAlloc" FromRole="labList" ToRole="Lab_Allocation" />
+    <NavigationProperty Name="LAB_INST_PREFERENCE" Relationship="Self.FK__LAB_INST___pref___49C3F6B7" FromRole="labList" ToRole="LAB_INST_PREFERENCE" />
+    <NavigationProperty Name="LAB_INST_PREFERENCE1" Relationship="Self.FK__LAB_INST___pref___4AB81AF0" FromRole="labList" ToRole="LAB_INST_PREFERENCE" />
+    <NavigationProperty Name="labs_section_timing" Relationship="Self.FK_LabList" FromRole="labList" ToRole="labs_section_timing" />
+  </EntityType>
+  <EntityType Name="labs_section_timing">
+    <Key>
+      <PropertyRef Name="lab_id" />
+      <PropertyRef Name="lab_section" />
+    </Key>
+    <Property Name="lab_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lab_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lab_section" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lab_timing" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="labList" Relationship="Self.FK_LabList" FromRole="labs_section_timing" ToRole="labList" />
+    <NavigationProperty Name="section" Relationship="Self.FK_SECTIONS_LABS" FromRole="labs_section_timing" ToRole="sections" />
+  </EntityType>
+  <EntityType Name="section">
+    <Key>
+      <PropertyRef Name="section_id" />
+    </Key>
+    <Property Name="section_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Course_Allocation" Relationship="Self.FK_SECTIONSAlloc" FromRole="sections" ToRole="Course_Allocation" />
+    <NavigationProperty Name="course_section_timing" Relationship="Self.FK_SECTIONS" FromRole="sections" ToRole="course_section_timing" />
+    <NavigationProperty Name="Lab_Allocation" Relationship="Self.FK_LABSECTIONSAlloc" FromRole="sections" ToRole="Lab_Allocation" />
+    <NavigationProperty Name="labs_section_timing" Relationship="Self.FK_SECTIONS_LABS" FromRole="sections" ToRole="labs_section_timing" />
+  </EntityType>
+  <EntityType Name="venue">
+    <Key>
+      <PropertyRef Name="venue_id" />
+    </Key>
+    <Property Name="venue_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="capacity" Type="Int32" />
+    <NavigationProperty Name="timetables" Relationship="Self.FK_venues_TT" FromRole="venues" ToRole="timetable" />
+  </EntityType>
+  <EntityType Name="timetable">
+    <Key>
+      <PropertyRef Name="timetable_ver" />
+      <PropertyRef Name="timetable_venues" />
+    </Key>
+    <Property Name="timetable_ver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="coursetimetable_slots" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="labtimetable_slots" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="timetable_venues" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="venue" Relationship="Self.FK_venues_TT" FromRole="timetable" ToRole="venues" />
+  </EntityType>
+  <Association Name="FK_COURSE_INSTRUCTOR">
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="0..1" />
+    <End Role="Course_Allocation" Type="Self.Course_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="Instructor_id" />
+      </Principal>
+      <Dependent Role="Course_Allocation">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseListAlloc">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="1" />
+    <End Role="Course_Allocation" Type="Self.Course_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="Course_Allocation">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SECTIONSAlloc">
+    <End Role="sections" Type="Self.section" Multiplicity="1" />
+    <End Role="Course_Allocation" Type="Self.Course_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="Course_Allocation">
+        <PropertyRef Name="Section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___440B1D61">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_course_id_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___44FF419A">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_course_id_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___45F365D3">
+    <End Role="course_timeslot" Type="Self.course_timeslot" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course_timeslot">
+        <PropertyRef Name="courseTimeslot_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_timeslotID_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COURSE_IN__pref___46E78A0C">
+    <End Role="course_timeslot" Type="Self.course_timeslot" Multiplicity="0..1" />
+    <End Role="COURSE_INST_PREFERENCES" Type="Self.COURSE_INST_PREFERENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course_timeslot">
+        <PropertyRef Name="courseTimeslot_id" />
+      </Principal>
+      <Dependent Role="COURSE_INST_PREFERENCES">
+        <PropertyRef Name="pref_timeslotID_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseList">
+    <End Role="courseList" Type="Self.courseList" Multiplicity="1" />
+    <End Role="course_section_timing" Type="Self.course_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseList">
+        <PropertyRef Name="Course_id" />
+      </Principal>
+      <Dependent Role="course_section_timing">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SECTIONS">
+    <End Role="sections" Type="Self.section" Multiplicity="1" />
+    <End Role="course_section_timing" Type="Self.course_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="course_section_timing">
+        <PropertyRef Name="course_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LAB_INSTRUCTOR">
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="0..1" />
+    <End Role="Lab_Allocation" Type="Self.Lab_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="Instructor_id" />
+      </Principal>
+      <Dependent Role="Lab_Allocation">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabListAlloc">
+    <End Role="labList" Type="Self.labList" Multiplicity="1" />
+    <End Role="Lab_Allocation" Type="Self.Lab_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="Lab_Allocation">
+        <PropertyRef Name="LabID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LABSECTIONSAlloc">
+    <End Role="sections" Type="Self.section" Multiplicity="1" />
+    <End Role="Lab_Allocation" Type="Self.Lab_Allocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="Lab_Allocation">
+        <PropertyRef Name="Section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___non_p__4BAC3F29">
+    <End Role="lab_timeslot" Type="Self.lab_timeslot" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lab_timeslot">
+        <PropertyRef Name="labTimeslot_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="non_pref_timeslotID_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___non_p__4CA06362">
+    <End Role="lab_timeslot" Type="Self.lab_timeslot" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lab_timeslot">
+        <PropertyRef Name="labTimeslot_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="non_pref_timeslotID_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___pref___49C3F6B7">
+    <End Role="labList" Type="Self.labList" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="pref_lab_id_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LAB_INST___pref___4AB81AF0">
+    <End Role="labList" Type="Self.labList" Multiplicity="0..1" />
+    <End Role="LAB_INST_PREFERENCE" Type="Self.LAB_INST_PREFERENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="LAB_INST_PREFERENCE">
+        <PropertyRef Name="pref_lab_id_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabList">
+    <End Role="labList" Type="Self.labList" Multiplicity="1" />
+    <End Role="labs_section_timing" Type="Self.labs_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="labList">
+        <PropertyRef Name="Lab_id" />
+      </Principal>
+      <Dependent Role="labs_section_timing">
+        <PropertyRef Name="lab_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SECTIONS_LABS">
+    <End Role="sections" Type="Self.section" Multiplicity="1" />
+    <End Role="labs_section_timing" Type="Self.labs_section_timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sections">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="labs_section_timing">
+        <PropertyRef Name="lab_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_venues_TT">
+    <End Role="venues" Type="Self.venue" Multiplicity="1" />
+    <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="venues">
+        <PropertyRef Name="venue_id" />
+      </Principal>
+      <Dependent Role="timetable">
+        <PropertyRef Name="timetable_venues" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SE_TEAM2_dbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Course_Allocation" EntityType="Self.Course_Allocation" />
+    <EntitySet Name="COURSE_INST_PREFERENCES" EntityType="Self.COURSE_INST_PREFERENCES" />
+    <EntitySet Name="course_section_timing" EntityType="Self.course_section_timing" />
+    <EntitySet Name="course_timeslot" EntityType="Self.course_timeslot" />
+    <EntitySet Name="courseLists" EntityType="Self.courseList" />
+    <EntitySet Name="Lab_Allocation" EntityType="Self.Lab_Allocation" />
+    <EntitySet Name="LAB_INST_PREFERENCE" EntityType="Self.LAB_INST_PREFERENCE" />
+    <EntitySet Name="lab_timeslot" EntityType="Self.lab_timeslot" />
+    <EntitySet Name="labLists" EntityType="Self.labList" />
+    <EntitySet Name="labs_section_timing" EntityType="Self.labs_section_timing" />
+    <EntitySet Name="sections" EntityType="Self.section" />
+    <EntitySet Name="venues" EntityType="Self.venue" />
+    <EntitySet Name="timetables" EntityType="Self.timetable" />
+    <AssociationSet Name="FK_COURSE_INSTRUCTOR" Association="Self.FK_COURSE_INSTRUCTOR">
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+      <End Role="Course_Allocation" EntitySet="Course_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseListAlloc" Association="Self.FK_CourseListAlloc">
+      <End Role="courseList" EntitySet="courseLists" />
+      <End Role="Course_Allocation" EntitySet="Course_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SECTIONSAlloc" Association="Self.FK_SECTIONSAlloc">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="Course_Allocation" EntitySet="Course_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___440B1D61" Association="Self.FK__COURSE_IN__pref___440B1D61">
+      <End Role="courseList" EntitySet="courseLists" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___44FF419A" Association="Self.FK__COURSE_IN__pref___44FF419A">
+      <End Role="courseList" EntitySet="courseLists" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___45F365D3" Association="Self.FK__COURSE_IN__pref___45F365D3">
+      <End Role="course_timeslot" EntitySet="course_timeslot" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COURSE_IN__pref___46E78A0C" Association="Self.FK__COURSE_IN__pref___46E78A0C">
+      <End Role="course_timeslot" EntitySet="course_timeslot" />
+      <End Role="COURSE_INST_PREFERENCES" EntitySet="COURSE_INST_PREFERENCES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseList" Association="Self.FK_CourseList">
+      <End Role="courseList" EntitySet="courseLists" />
+      <End Role="course_section_timing" EntitySet="course_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SECTIONS" Association="Self.FK_SECTIONS">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="course_section_timing" EntitySet="course_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LAB_INSTRUCTOR" Association="Self.FK_LAB_INSTRUCTOR">
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+      <End Role="Lab_Allocation" EntitySet="Lab_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabListAlloc" Association="Self.FK_LabListAlloc">
+      <End Role="labList" EntitySet="labLists" />
+      <End Role="Lab_Allocation" EntitySet="Lab_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LABSECTIONSAlloc" Association="Self.FK_LABSECTIONSAlloc">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="Lab_Allocation" EntitySet="Lab_Allocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___non_p__4BAC3F29" Association="Self.FK__LAB_INST___non_p__4BAC3F29">
+      <End Role="lab_timeslot" EntitySet="lab_timeslot" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___non_p__4CA06362" Association="Self.FK__LAB_INST___non_p__4CA06362">
+      <End Role="lab_timeslot" EntitySet="lab_timeslot" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___pref___49C3F6B7" Association="Self.FK__LAB_INST___pref___49C3F6B7">
+      <End Role="labList" EntitySet="labLists" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LAB_INST___pref___4AB81AF0" Association="Self.FK__LAB_INST___pref___4AB81AF0">
+      <End Role="labList" EntitySet="labLists" />
+      <End Role="LAB_INST_PREFERENCE" EntitySet="LAB_INST_PREFERENCE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabList" Association="Self.FK_LabList">
+      <End Role="labList" EntitySet="labLists" />
+      <End Role="labs_section_timing" EntitySet="labs_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SECTIONS_LABS" Association="Self.FK_SECTIONS_LABS">
+      <End Role="sections" EntitySet="sections" />
+      <End Role="labs_section_timing" EntitySet="labs_section_timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_venues_TT" Association="Self.FK_venues_TT">
+      <End Role="venues" EntitySet="venues" />
+      <End Role="timetable" EntitySet="timetables" />
+    </AssociationSet>
+    <FunctionImport Name="check_course_clash">
+      <Parameter Name="instructor_id" Mode="In" Type="Int32" />
+      <Parameter Name="course_id" Mode="In" Type="String" />
+      <Parameter Name="clash" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="check_timing_clash">
+      <Parameter Name="instructor_id" Mode="In" Type="Int32" />
+      <Parameter Name="time_slot_id" Mode="In" Type="String" />
+      <Parameter Name="clash" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="check_venue_clash">
+      <Parameter Name="venue_id" Mode="In" Type="String" />
+      <Parameter Name="time_slot" Mode="In" Type="Time" />
+      <Parameter Name="clash" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>
